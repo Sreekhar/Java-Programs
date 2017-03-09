@@ -10,40 +10,45 @@ class MainClass {
       //                      {10, 9, 8, 7}};
 
       //  int[][] Matrix3 = { {1, 2, 3, 4, 5, 6, 7},
-      //                      {16, 17, 18, 19, 20, 21, 22},
+      //                      {16, 17, 18, 19, 20, 21, 8},
       //                      {15, 14, 13, 12, 11, 10, 9}};
 
-        System.out.println("Before rotating the elements");
+        System.out.println("Before printing the elements");
         PrintMatrix(Matrix1, Matrix1.length, Matrix1[0].length);
         // PrintMatrix(Matrix2);
 
+        System.out.println("After spirally printing the elements");
         SpiralTheMatrix(Matrix1, Matrix1.length, Matrix1[0].length);
         // RotateTheMatrix(Matrix2, Matrix2.length);
-
-        System.out.println("After rotating the elements");
-        PrintMatrix(Matrix1);
-        // PrintMatrix(Matrix2);
-
     }
 
-    static void RotateTheMatrix(int[][] Matrix, int row, int column){
+    static void SpiralTheMatrix(int[][] Matrix, int row, int column){
+        int Count;
+        row--;
+        column--;
 
-        for(int iCount = 0, jCount = (column-1); iCount < (row/2) && jCount >= (column/2); iCount++, jCount--) {
+        for(int rowLength = 0, columnLength = 0; rowLength <= row && columnLength <= column; row--, column--, rowLength++, columnLength++) {
 
-            for(int Count = iCount; Count < jCount; Count++) {
-                System.out.println(Matrix[iCount][Count] + " ");
+            for(Count = columnLength; Count <= column; Count++) {
+                System.out.print(Matrix[rowLength][Count] + " ");
+                // System.out.println(Count);
             }
 
-            for(int Count = iCount; Count < jCount; Count++) {
-                System.out.println(Matrix[Count][jCount] + " ");
+            for(Count = rowLength+1; Count <= row; Count++) {
+                System.out.print(Matrix[Count][column] + " ");
+                // System.out.println(Count);
             }
 
-            for(int Count = jCount; Count > iCount; Count--) {
-                System.out.println(Matrix[jCount][Count] + " ");
-            }
+            if(rowLength != row && columnLength != column) {
+                for(Count = column - 1; Count >= columnLength; Count--) {
+                  System.out.print(Matrix[row][Count] + " ");
+                  // System.out.println(Count);
+                }
 
-            for(int Count = jCount; Count > iCount; Count--) {
-                System.out.println(Matrix[Count][iCount] + " ");
+                for(Count = row - 1; Count > rowLength; Count--) {
+                  System.out.print(Matrix[Count][columnLength] + " ");
+                  // System.out.println(Count);
+                }
             }
 
         }
