@@ -65,7 +65,7 @@ class MainClass {
 
         for(int iCount=0; iCount < persons.length; iCount++) {
             PersonDetails tempPerson = personsList.get(iCount);
-            for(int jCount=tempPerson.getBirthYear(); jCount < tempPerson.getDeathYear(); jCount++) {
+            for(int jCount=tempPerson.getBirthYear(); jCount <= tempPerson.getDeathYear(); jCount++) {
                 if (commonYears.containsKey(jCount)) {
                     commonYears.put(jCount, commonYears.get(jCount) + 1);
                 } else {
@@ -74,7 +74,7 @@ class MainClass {
             }
         }
 
-        System.out.println("\nHighest population was in the following years \n\n" + highestDeathYear);
+        System.out.println("\nHighest population was in the following years \n\n");
 
         int maxValueInMap = (Collections.max(commonYears.values()));  // This will return max value in the Hashmap
         for (Map.Entry<Integer, Integer> entry : commonYears.entrySet()) {  // Itrate through hashmap
